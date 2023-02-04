@@ -5,7 +5,7 @@ const values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
 const Home = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [transparentCell, setTransparentCell] = useState(null);
+  const [transparentCells, setTransparentCells] = useState([]);
 
   const handleClick = (value) => {
     setSelectedValue(value);
@@ -13,7 +13,7 @@ const Home = () => {
   };
 
   const handleStake = () => {
-    setTransparentCell(selectedValue);
+    setTransparentCells([...transparentCells, selectedValue]);
     setSelectedValue(null);
     setShowPopup(false);
   }
@@ -37,7 +37,7 @@ const Home = () => {
             className="cell" 
             onClick={() => handleClick(value)}
             style={{
-              backgroundColor: value === transparentCell ? "transparent" : "#dcdcdc",
+              backgroundColor: transparentCells.includes(value) ? "transparent" : "#dcdcdc",
             }}
           >{value}
           </div>
