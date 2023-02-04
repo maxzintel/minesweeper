@@ -5,11 +5,18 @@ const values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
 const Home = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [transparentCell, setTransparentCell] = useState(null);
 
   const handleClick = (value) => {
     setSelectedValue(value);
     setShowPopup(true);
   };
+
+  const handleStake = () => {
+    setTransparentCell(selectedValue);
+    setSelectedValue(null);
+    setShowPopup(false);
+  }
 
   const closePopup = () => {
     setSelectedValue(null);
@@ -25,13 +32,22 @@ const Home = () => {
     }}>
       <div className="grid">
         {values.map((value, index) => (
-          <div key={index} className="cell" onClick={() => handleClick(value)}>{value}</div>
+          <div 
+            key={index} 
+            className="cell" 
+            onClick={() => handleClick(value)}
+            style={{
+              backgroundColor: value === transparentCell ? "transparent" : "#dcdcdc",
+            }}
+          >{value}
+          </div>
         ))}
       </div>
       {showPopup && (
         <div className="popup">
           <p>You clicked on value: {selectedValue}</p>
           <button onClick={closePopup}>Close</button>
+          <button onClick={handleStake}>Stake</button>
         </div>
       )}
     </div>
