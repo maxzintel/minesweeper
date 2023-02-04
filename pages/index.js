@@ -17,7 +17,12 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div style={{
+      backgroundImage: `url('assets/sample-background.jpg')`,
+      backgroundSize: 'cover',
+      height: '100vh',
+      width: '100vw'
+    }}>
       <div className="grid">
         {values.map((value, index) => (
           <div key={index} className="cell" onClick={() => handleClick(value)}>{value}</div>
